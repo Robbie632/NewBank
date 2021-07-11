@@ -1,8 +1,9 @@
-package newbank.server;
+package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.lang.*;
 
 public class NewBankServer extends Thread{
 	
