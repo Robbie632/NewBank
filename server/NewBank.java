@@ -1,4 +1,4 @@
-package newbank.server;
+package server;
 
 import java.util.HashMap;
 
@@ -24,6 +24,13 @@ public class NewBank {
 		Customer john = new Customer();
 		john.addAccount(new Account("Checking", 250.0));
 		customers.put("John", john);
+
+		/* Create  a new user here by uncommenting the below and setting values  */
+
+//		Customer john = new Customer();
+//		john.addAccount(new Account("Checking", 250.0));
+//		customers.put("New user", john);
+
 	}
 	
 	public static NewBank getBank() {
@@ -35,6 +42,14 @@ public class NewBank {
 			return new CustomerID(userName);
 		}
 		return null;
+	}
+
+	public synchronized boolean isCustomer(String userName , String password){
+		if(customers.containsKey(userName)){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// commands from the NewBank customer are processed in this method

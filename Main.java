@@ -1,5 +1,5 @@
-import newbank.client.ExampleClient;
-import newbank.server.NewBankServer;
+import client.*;
+import server.*;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
