@@ -59,6 +59,8 @@ public class NewBankClientHandler extends Thread{
 				}
 				else {
 					out.println("Log In Failed");
+					// ask for username and password again
+					run();
 				}
 
 			} else {
