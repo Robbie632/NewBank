@@ -12,12 +12,19 @@ public class Customer {
 		accounts = new ArrayList<>();
 	}
 
-	//todo javadoc
+	/*
+	* sets password
+	* @param password sets password for the instance of customer
+	* */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	//todo javadoc
+	/*
+	* Checks if password is correct
+	* @param passwordInput, password entered by user
+	* @return boolean indicating if password correct or not
+	*/
 	public boolean checkPassword(String passwordInput) {
 		if (passwordInput.equals(password)) {
 			return true;

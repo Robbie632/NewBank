@@ -42,11 +42,15 @@ public class NewBank {
 	public static NewBank getBank() {
 		return bank;
 	}
-	
-	public synchronized CustomerID checkLogInDetails(String userName, String password) {
-    //todo modify this so checks username and password against stored information
 
-		String blankUsername = "blank";
+	/*
+	* checks if username exists and if password correct
+	* @param userName, username to check
+	* @param password, password to check
+	* @return either null or the customer id
+	* */
+	public synchronized CustomerID checkLogInDetails(String userName, String password) {
+
 		if(customers.containsKey(userName)) {
 			Customer relevantCustomer = customers.get(userName);
 			if (relevantCustomer.checkPassword(password)) {

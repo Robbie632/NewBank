@@ -67,5 +67,27 @@ it needs to be persisted somehow e.g. txt.file, json.file or some kind of databa
 ````
 
 
+## Tests
+
+### manual tests: 
+- run code
+- enter username: 
+
+```John```
+
+- enter password 
+
+```randomPassword3```
+
+- the response should be: 
+
+```Log In Successful. What do you want to do?```
+
+- do same as above but enter wrong username or password
+- response should be: 
+```Log In Failed``` 
+and then it asks for username and password again
+
+
 
 
