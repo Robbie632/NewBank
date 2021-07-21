@@ -1,0 +1,37 @@
+{
+  "ID" : {
+    "12fhf576":{
+      "username":"Jack",
+      "password":"password1",
+      "money": {
+        "current":10,
+        "transactions": {
+          "amounts": [-1, 20, -12],
+          "dates" : ["01-01-01", "02-02-02", "03-03-03"]
+        }
+      }
+     },
+    "12fhf565h": {
+      "username":"Jill",
+      "password":"password2",
+      "money": {
+        "current":20,
+        "transactions": {
+          "amounts": [-1, 22, -32],
+          "dates" : ["04-04-04", "04-02-05", "03-03-09"]
+        }
+      }
+    },
+    "12fhf5gthtr": {
+      "username":"Jane",
+      "password":"password3",
+      "money": {
+        "current":30,
+        "transactions": {
+          "amounts": [-13, 50, -12],
+          "dates" : ["01-01-01", "02-02-02", "03-03-17"]
+        }
+      }
+     }
+  }
+}

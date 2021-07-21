@@ -14,14 +14,20 @@ public class NewBank {
 	
 	private void addTestData() {
 		Customer bhagy = new Customer();
+		//set password
+		bhagy.setPassword("randomPassword1");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		customers.put("Bhagy", bhagy);
 		
 		Customer christina = new Customer();
+		//set password
+		christina.setPassword("randomPassword2");
 		christina.addAccount(new Account("Savings", 1500.0));
 		customers.put("Christina", christina);
 		
 		Customer john = new Customer();
+		//set password
+		john.setPassword("randomPassword3");
 		john.addAccount(new Account("Checking", 250.0));
 		customers.put("John", john);
 
@@ -38,8 +44,17 @@ public class NewBank {
 	}
 	
 	public synchronized CustomerID checkLogInDetails(String userName, String password) {
+    //todo modify this so checks username and password against stored information
+
+		String blankUsername = "blank";
 		if(customers.containsKey(userName)) {
-			return new CustomerID(userName);
+			Customer relevantCustomer = customers.get(userName);
+			if (relevantCustomer.checkPassword(password)) {
+				return new CustomerID(userName);
+			} else {
+				System.out.println("incorrect password");
+				return null;
+			}
 		}
 		return null;
 	}
