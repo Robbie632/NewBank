@@ -41,27 +41,30 @@ public class Customer {
 		return s;
 	}
 
+	/*
+	* move money between accounts
+	* @param amount, amount to be moved
+	* @param from, account name money is to be moved from
+	* @param to, account name money is to be moved to
+	* */
 	public boolean moveMoney(String amount, String from , String to) {
-		//todo implement method
 
-		//try to convert amount to double, if doesnt work return false
-		//test from and to to see actual in accounts, if not return false
-		//loop through accounts and chek names against input
 		boolean fromStatus=false;
 		boolean toStatus=false;
 		Double numericAmount;
 
-		//if all conditions above don't return false move the money
+		//try to convert amount to double
 		try {
 			numericAmount = Double.parseDouble(amount);
 		} catch(NumberFormatException e) {
 			System.out.println("invalid amount entered");
 			return false;
 		}
+		// check if the savings from and to are the same
 		if (from.equals(to)){
 			return false;
 		}
-
+		//check the accounts exist
 		for (Account a: accounts) {
 			if (a.getAccountName().equals(from)) {
 				fromStatus=true;
@@ -70,22 +73,24 @@ public class Customer {
 				toStatus=true;
 			}
 		}
-
+		//if at least one account doesnt exist, return false
 		if (!fromStatus | !toStatus) {
 			return false;
 		}
 
 		//updateBalance
 		for (Account a:accounts) {
-			if (a.equals(from)){
+			if (a.getAccountName().equals(from)){
 				a.updateBalance(-numericAmount);
+
 			}
-			if (a.equals(to)){
+			if (a.getAccountName().equals(to)){
 				a.updateBalance(numericAmount);
+
 			}
 		}
-
-		return false;
+		// if code reaches here money transfer would have been successful
+		return true;
 	}
 
 	public void addAccount(Account account) {
