@@ -74,8 +74,12 @@ public class NewBank {
 	// commands from the NewBank customer are processed in this method
 	public synchronized String processRequest(CustomerID customer, String request) {
 		if(customers.containsKey(customer.getKey())) {
+			//check for MOVE command here
+			String[] request_params = request.split("\\s+");
+			request = request_params[0];
 			switch(request) {
 			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
+			case "MOVE" : customers.get(customer).moveMoney(request_params[1], request_params[2], request_params[3]);
 			default : return "FAIL";
 			}
 		}
