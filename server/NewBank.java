@@ -59,7 +59,7 @@ public class NewBank {
 			if (relevantCustomer.checkPassword(password)) {
 				return new CustomerID(userName);
 			} else {
-				System.out.println("incorrect password");
+				System.out.println("Password entered is incorrect.");
 				return null;
 			}
 		}
@@ -84,17 +84,31 @@ public class NewBank {
 			String[] request_params = request.split("\\s+");
 
 			switch(request_params[0]) {
+
 			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
-			// attempt to move money between accounts
+			
+			//add new account (only works if account does not already exist for customer)
+			case "NEWACCOUNT" :
+			Customer current = customers.get(customer.getKey());
+				try{
+					status = customers.get(customer.getKey()).newAccount(current, request_params[1]);
+				//catch exception if incorrect number of parameters are inputted	
+				} catch(ArrayIndexOutOfBoundsException e) {
+					status = false;
+			} 
+			break;
+
+			//attempt to move money between accounts
 			case "MOVE" :
 				try {
 					status = customers.get(customer.getKey()).moveMoney(request_params[1], request_params[2], request_params[3]);
-				//catch expecption if incorrect number of parameters are inputted
+				//catch exception if incorrect number of parameters are inputted
 				} catch(ArrayIndexOutOfBoundsException e) {
 					status = false;
 			}
 
 			break;
+
 			default : return "FAIL";
 			}
 		}
@@ -103,7 +117,6 @@ public class NewBank {
 		} else {
 			return "FAIL";
 		}
-
 	}
 	
 	private String showMyAccounts(CustomerID customer) {

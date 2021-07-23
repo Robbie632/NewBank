@@ -25,7 +25,7 @@ public class Account {
 	}
 
 	public String toString() {
-		return (accountName + " opening balance : " + openingBalance + " currentBalance : " + currentBalance);
+		return (accountName + " opening balance : " + openingBalance + " currentBalance : " + currentBalance + "\n");
 	}
 
 }

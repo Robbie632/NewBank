@@ -74,61 +74,75 @@ steps from above
 ````
 
 
-# Tests
+## Tests
 
----
+### Manual Tests: 
 
-## Logging in
----
+- run code via command line (as explained above)
 
-- run code
 - enter username: 
 
-```b```
+```j```
 
 - enter password 
 
-```1```
+```3```
 
 - the response should be: 
 
 ```Log In Successful. What do you want to do?```
 
 - do same as above but enter wrong username or password
+
 - response should be: 
 ```Log In Failed``` 
-and then it asks for username and password again
 
-## Moving money between accounts
+Then it asks for username and password again
 
----
 
-* run code
 
-* enter username
+#### SHOWMYACCOUNTS:
 
-* enter password
+- enter SHOWMYACCOUNTS
 
-* enter
+- shows a list of accounts as follows:
 
-```
-MOVE <amount> <fromAccount> <toAccount>
-```
+```Main opening balance : 250.0 currentBalance : 250.0```
+```Savings opening balance : 250.0 currentBalance : 250.0```
 
+
+
+#### NEWACCOUNT <Name>:
 where :
+<Name> : the name of a new account
 
-\<amount\> : the amount of money to be moved
+- enter NEWACCOUNT Checking
 
-\<fromAccount\> : name of an existing account associated with the person you are logged in as to move money from
+- if account does not already exist for customer, response should be:
 
-\<toAccount\> : name of an existing account associated with the person you are logged in as to move money to
+```SUCCESS```
 
-try this with valid arguments, the return should be : 
+- if account already exists for customer, response should be:
 
-"SUCCESS"
-
-try with invalid arguments, the return should be :
-
-"FAIL"
+```FAIL```
 
 
+
+#### MOVE <Amount> <From> <To>:
+where :
+<amount> : the amount of money to be moved
+
+<fromAccount> : name of an existing account associated with the person you are logged in as to move money from
+
+<toAccount> : name of an existing account associated with the person you are logged in as to move money to
+
+
+- enter MOVE 50 Main Savings
+
+- if accounts <From> and <To> are not the same and they both already exist for customer, response should be:
+
+```SUCCESS```
+
+- if accounts <From> and <To> are the same or they both don't already exist for customer, response should be:
+
+```FAIL```
