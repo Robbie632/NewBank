@@ -15,21 +15,24 @@ public class NewBank {
 	private void addTestData() {
 		Customer bhagy = new Customer();
 		//set password
-		bhagy.setPassword("randomPassword1");
+		bhagy.setPassword("1");
 		bhagy.addAccount(new Account("Main", 1000.0));
-		customers.put("Bhagy", bhagy);
+		bhagy.addAccount(new Account("Savings", 1000.0));
+		customers.put("b", bhagy);
 		
 		Customer christina = new Customer();
 		//set password
-		christina.setPassword("randomPassword2");
+		christina.setPassword("2");
 		christina.addAccount(new Account("Savings", 1500.0));
-		customers.put("Christina", christina);
+		christina.addAccount(new Account("Main", 100.0));
+		customers.put("c", christina);
 		
 		Customer john = new Customer();
 		//set password
-		john.setPassword("randomPassword3");
-		john.addAccount(new Account("Checking", 250.0));
-		customers.put("John", john);
+		john.setPassword("3");
+		john.addAccount(new Account("Main", 250.0));
+		john.addAccount(new Account("Savings", 250.0));
+		customers.put("j", john);
 
 		/* Create  a new user here by uncommenting the below and setting values  */
 
@@ -70,16 +73,37 @@ public class NewBank {
 			return false;
 		}
 	}
-
-	// commands from the NewBank customer are processed in this method
+	/*
+	* commands from the NewBank customer are processed in this method
+	* @param customer, the id of the customer processing the request
+	* @param request, the input at the command line from the user
+	* */
 	public synchronized String processRequest(CustomerID customer, String request) {
+		boolean status=false;
 		if(customers.containsKey(customer.getKey())) {
-			switch(request) {
+			String[] request_params = request.split("\\s+");
+
+			switch(request_params[0]) {
 			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
+			// attempt to move money between accounts
+			case "MOVE" :
+				try {
+					status = customers.get(customer.getKey()).moveMoney(request_params[1], request_params[2], request_params[3]);
+				//catch expecption if incorrect number of parameters are inputted
+				} catch(ArrayIndexOutOfBoundsException e) {
+					status = false;
+			}
+
+			break;
 			default : return "FAIL";
 			}
 		}
-		return "FAIL";
+		if (status){
+			return "SUCCESS";
+		} else {
+			return "FAIL";
+		}
+
 	}
 	
 	private String showMyAccounts(CustomerID customer) {

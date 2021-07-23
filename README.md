@@ -40,25 +40,32 @@ The cli tool currently has a hardcoded set of users that it checks when you log 
 manually go into the ``NewBank.java`` class and add yourself in the method below. Then re-compile and run the code 
 steps from above
 
-You can enter any value for the password as this is not validated at the moment (tbc on how this will be implemented 
-it needs to be persisted somehow e.g. txt.file, json.file or some kind of database)
 
 ````java
 	private void addTestData() {
 		Customer bhagy = new Customer();
+		//set password
+		bhagy.setPassword("1");
 		bhagy.addAccount(new Account("Main", 1000.0));
-		customers.put("Bhagy", bhagy);
+		bhagy.addAccount(new Account("Savings", 1000.0));
+		customers.put("b", bhagy);
 		
 		Customer christina = new Customer();
+		//set password
+		christina.setPassword("2");
 		christina.addAccount(new Account("Savings", 1500.0));
-		customers.put("Christina", christina);
+		christina.addAccount(new Account("Main", 100.0));
+		customers.put("c", christina);
 		
 		Customer john = new Customer();
-		john.addAccount(new Account("Checking", 250.0));
-		customers.put("John", john);
+		//set password
+		john.setPassword("3");
+		john.addAccount(new Account("Main", 250.0));
+		john.addAccount(new Account("Savings", 250.0));
+		customers.put("j", john);
 
-		// Create  a new user here by uncommenting the below and setting values 
-        
+		/* Create  a new user here by uncommenting the below and setting values  */
+
 //		Customer john = new Customer();
 //		john.addAccount(new Account("Checking", 250.0));
 //		customers.put("New user", john);
@@ -67,17 +74,21 @@ it needs to be persisted somehow e.g. txt.file, json.file or some kind of databa
 ````
 
 
-## Tests
+# Tests
 
-### manual tests: 
+---
+
+## Logging in
+---
+
 - run code
 - enter username: 
 
-```John```
+```b```
 
 - enter password 
 
-```randomPassword3```
+```1```
 
 - the response should be: 
 
@@ -88,6 +99,36 @@ it needs to be persisted somehow e.g. txt.file, json.file or some kind of databa
 ```Log In Failed``` 
 and then it asks for username and password again
 
+## Moving money between accounts
 
+---
+
+* run code
+
+* enter username
+
+* enter password
+
+* enter
+
+```
+MOVE <amount> <fromAccount> <toAccount>
+```
+
+where :
+
+\<amount\> : the amount of money to be moved
+
+\<fromAccount\> : name of an existing account associated with the person you are logged in as to move money from
+
+\<toAccount\> : name of an existing account associated with the person you are logged in as to move money to
+
+try this with valid arguments, the return should be : 
+
+"SUCCESS"
+
+try with invalid arguments, the return should be :
+
+"FAIL"
 
 
