@@ -42,6 +42,33 @@ public class Customer {
 	}
 
 	/*
+	* add new account for customer
+	* @param current, customer who is requesting new account
+	* @param name, name of new account
+	* */
+	public boolean newAccount(Customer current, String name){
+		boolean accountExists = false;
+
+		//checks if the account exists
+		for(Account a: accounts){
+			if(a.getAccountName().equals(name)){
+				accountExists = true;
+			}
+		}
+
+		//if account exists return false
+		if(accountExists){
+			return false;
+		}
+
+		//add new account for current customer
+		current.addAccount(new Account(name, 0.0));
+	
+		//if code reaches here new account has been added
+		return true;
+	}
+
+	/*
 	* move money between accounts
 	* @param amount, amount to be moved
 	* @param from, account name money is to be moved from
