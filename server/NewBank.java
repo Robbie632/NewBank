@@ -54,15 +54,29 @@ public class NewBank {
 	* */
 	public synchronized CustomerID checkLogInDetails(String userName, String password) {
 
+		Output out = new Output();
+
 		if(customers.containsKey(userName)) {
 			Customer relevantCustomer = customers.get(userName);
 			if (relevantCustomer.checkPassword(password)) {
+				//out.setStatus(true);
+				//out.addMessage("successful log in");
+				//out.setInformation(new CustomerID(userName))
+				//return out;
 				return new CustomerID(userName);
 			} else {
+				//out.setStatus(false);
+				//out.addMessage("Username entered is valid.");
+				//out.addMessage("Password entered is incorrect.");
 				System.out.println("Password entered is incorrect.");
+				//return out;
 				return null;
 			}
+		} else {
+			//out.setStatus(false);
+			//out.addMessage(incorrect username used);
 		}
+		//return out;
 		return null;
 	}
 
