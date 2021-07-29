@@ -111,9 +111,9 @@ Then it asks for username and password again
 
 
 
-#### NEWACCOUNT <Name>:
+#### NEWACCOUNT [Name]:
 where :
-<Name> : the name of a new account
+[Name] : the name of a new account
 
 - enter NEWACCOUNT Checking
 
@@ -127,21 +127,38 @@ where :
 
 
 
-#### MOVE <Amount> <From> <To>:
+#### MOVE [Amount] [From] [To]:
 where :
-<amount> : the amount of money to be moved
 
-<fromAccount> : name of an existing account associated with the person you are logged in as to move money from
+[amount] : the amount of money to be moved
 
-<toAccount> : name of an existing account associated with the person you are logged in as to move money to
+[fromAccount] : name of an existing account associated with the person you are logged in as to move money from
+
+[toAccount] : name of an existing account associated with the person you are logged in as to move money to
 
 
 - enter MOVE 50 Main Savings
 
-- if accounts <From> and <To> are not the same and they both already exist for customer, response should be:
+- if accounts [From] and [To] are not the same, and they both already exist for customer, response should be:
 
 ```SUCCESS```
 
-- if accounts <From> and <To> are the same or they both don't already exist for customer, response should be:
+- if accounts [From] and [To] are the same, or they both don't already exist for customer, response should be:
 
 ```FAIL```
+
+#### SHOWMYTRANSACTIONS
+
+should return information on all transactions done during the session, 
+example output after having moved money is shown below:
+
+```
+transaction type was : 
+move
+Involved parties were: 
+Savings
+Main
+amount was: 
+1234.0
+SUCCESS
+```

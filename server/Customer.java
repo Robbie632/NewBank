@@ -6,10 +6,13 @@ import java.util.ArrayList;
 public class Customer {
 	
 	private ArrayList<Account> accounts;
+	private ArrayList<Transaction> transactions;
 	private String password;
 	
 	public Customer() {
+
 		accounts = new ArrayList<>();
+		transactions = new ArrayList<>();
 	}
 
 	/*
@@ -117,10 +120,36 @@ public class Customer {
 			}
 		}
 		// if code reaches here money transfer would have been successful
+		//store details of transaction
+		ArrayList<String> parties = new ArrayList<>();
+		parties.add(from);
+		parties.add(to);
+		addTransaction(new Transaction("move", parties, numericAmount));
 		return true;
 	}
 
 	public void addAccount(Account account) {
 		accounts.add(account);		
 	}
+
+	public void addTransaction(Transaction transaction) { transactions.add(transaction); };
+
+	/**
+	 * Method for printing stored transactions associated with the customer
+	 */
+	public void printTransactions() {
+
+		for (Transaction tr: transactions) {
+			System.out.println("transaction type was : ");
+			System.out.println(tr.getTransactionType());
+			System.out.println("Involved parties were: ");
+			for (String party:tr.getInvolvedParties()) {
+				System.out.println(party);
+			}
+			System.out.println("amount was: ");
+			System.out.println(""+tr.getAmount());
+		}
+	}
+
+
 }
