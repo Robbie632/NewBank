@@ -50,11 +50,26 @@ public class NewBankClientHandler extends Thread{
 				// if the user is authenticated then get requests from the user and process them
 				if(customer != null) {
 					out.println("Log In Successful. What do you want to do?");
+					out.println();
+					out.println("SHOWMYACCOUNTS - to view a list of your accounts and their balance");
+					out.println("NEWACCOUNT <Name> - to open a new account with the name you provide");
+					out.println("MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another");
+					out.println("PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing");
+					out.println("END - To exit NewBank.");
+					out.println();
 					while(true) {
 						String request = in.readLine();
 						System.out.println("Request from " + customer.getKey());
 						String responce = bank.processRequest(customer, request);
 						out.println(responce);
+						out.println("What else would you like to do?");
+						out.println();
+						out.println("SHOWMYACCOUNTS - To view a list of your accounts and their balance.");
+						out.println("NEWACCOUNT <Name> - To open a new account with the name you provide.");
+						out.println("MOVE <Amount> <From> <To> - To move an amount of money from one of your accounts to another.");
+						out.println("PAY <Person/Company> <Amount> - To pay an amount of money to a person or company of your choosing.");
+						out.println("END - To exit NewBank.");
+						out.println();
 					}
 				}
 				else {
