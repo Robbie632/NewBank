@@ -1,13 +1,32 @@
 package server;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class NewBank {
-	
+
+	private final static Logger LOGGER = Logger.getLogger(NewBank.class.getName());
 	private static final NewBank bank = new NewBank();
 	private HashMap<String,Customer> customers;
 	
 	private NewBank() {
+		//all levels of message up to and including INFO will be written
+		try{
+			FileHandler fh = new FileHandler("MyLogFile.log");
+			SimpleFormatter formatter = new SimpleFormatter();
+			fh.setFormatter(formatter);
+			LOGGER.addHandler(fh);
+		} catch(IOException e) {
+			System.out.println("error initialising logfile");
+		}
+
+		LOGGER.setLevel(Level.INFO);
+
 		customers = new HashMap<>();
 		addTestData();
 	}
@@ -59,7 +78,7 @@ public class NewBank {
 			if (relevantCustomer.checkPassword(password)) {
 				return new CustomerID(userName);
 			} else {
-				System.out.println("Password entered is incorrect.");
+				LOGGER.warning("Password entered is incorrect.");
 				return null;
 			}
 		}
@@ -104,17 +123,21 @@ public class NewBank {
 					status = customers.get(customer.getKey()).moveMoney(request_params[1], request_params[2], request_params[3]);
 				//catch exception if incorrect number of parameters are inputted
 				} catch(ArrayIndexOutOfBoundsException e) {
+					LOGGER.severe("wrong number of input arguments, exception: " + e);
 					status = false;
 			}
 
 			break;
 
-			default : return "FAIL";
+			default :
+				LOGGER.warning("no valid operation input found");
+				return "FAIL";
 			}
 		}
 		if (status){
 			return "SUCCESS";
 		} else {
+			LOGGER.warning("processd command failed");
 			return "FAIL";
 		}
 	}
