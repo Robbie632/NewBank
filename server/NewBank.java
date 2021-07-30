@@ -135,9 +135,10 @@ public class NewBank {
 			}
 		}
 		if (status){
+			LOGGER.info("command processed correctly");
 			return "SUCCESS";
 		} else {
-			LOGGER.warning("processd command failed");
+			LOGGER.warning("processed command failed");
 			return "FAIL";
 		}
 	}
