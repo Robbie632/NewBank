@@ -42,35 +42,35 @@ public class NewBankClientHandler extends Thread{
 				}
 			}
 
-			if (bank.isCustomer(userName, password)){
-
-				out.println("Checking Details...");
-				// authenticate user and get customer ID token from bank for use in subsequent requests
-				CustomerID customer = bank.checkLogInDetails(userName, password);
-				// if the user is authenticated then get requests from the user and process them
-				if(customer != null) {
-					out.println("Log In Successful. What do you want to do?");
-					while(true) {
-						String request = in.readLine();
-						System.out.println("Request from " + customer.getKey());
-						String responce = bank.processRequest(customer, request);
-						out.println(responce);
-					}
+			out.println("Checking Details...");
+			// authenticate user and get customer ID token from bank for use in subsequent requests
+			Output loginFeedback = bank.checkLogInDetails(userName, password);
+			//check for successful log in
+			if(loginFeedback.getStatus()) {
+				//extract customer ID
+				Object customerObject = loginFeedback.getInformation();
+				CustomerID customer = (CustomerID) customerObject;
+				//loop through messages and print
+				for (String message:loginFeedback.getMessages()) {
+					System.out.println(message + "\n");
 				}
-				else {
-					out.println("Log In Failed");
-					// ask for username and password again
-					run();
+				//listen for commands from user
+				while(true) {
+					String request = in.readLine();
+					System.out.println("Request from " + customer.getKey());
+					String responce = bank.processRequest(customer, request);
+					out.println(responce);
 				}
-
-			} else {
-				System.out.println("User not found - please create account");
-				System.out.println("\n");
+				// start accepting input by using while true{ blah blah
+			}
+			//login has been unsuccessful
+			else {
+				//print messages for why login was unsuccessful
+				for (String message:loginFeedback.getMessages()) {
+					System.out.println(message + "\n");
+				}
 				run();
 			}
-
-
-
 
 		} catch (IOException e) {
 			e.printStackTrace();

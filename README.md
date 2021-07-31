@@ -91,14 +91,20 @@ steps from above
 
 ```Log In Successful. What do you want to do?```
 
-- do same as above but enter wrong username or password
+- do same as above but enter wrong username 
 
 - response should be: 
-```Log In Failed``` 
+
+```Username entered is valid.``` 
 
 Then it asks for username and password again
 
+- Enter correct username but incorrect password
 
+- response should be:
+
+```incorrect username inputted```
+  
 
 #### SHOWMYACCOUNTS:
 
