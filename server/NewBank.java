@@ -2,15 +2,55 @@ package server;
 
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class NewBank {
 	
 	private static final NewBank bank = new NewBank();
 	private HashMap<String,Customer> customers;
-	
+	private FileWriter file;
+
+
 	private NewBank() {
 		customers = new HashMap<>();
-		addTestData();
+		try {
+			file = new FileWriter("data.json");
+			addTestData();
+
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
+
 	}
+
+
+
+	private void writeToJson(String name, String password) {
+			try {
+				JSONObject obj = new JSONObject();
+				obj.put("name", name);
+				obj.put("password", password);
+				file.write(obj.toJSONString());
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					file.flush();
+					file.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	}
+
 	
 	private void addTestData() {
 		Customer bhagy = new Customer();
@@ -18,7 +58,9 @@ public class NewBank {
 		bhagy.setPassword("1");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		bhagy.addAccount(new Account("Savings", 1000.0));
+		writeToJson("b", "1");
 		customers.put("b", bhagy);
+
 		
 		Customer christina = new Customer();
 		//set password
@@ -26,6 +68,7 @@ public class NewBank {
 		christina.addAccount(new Account("Savings", 1500.0));
 		christina.addAccount(new Account("Main", 100.0));
 		customers.put("c", christina);
+
 		
 		Customer john = new Customer();
 		//set password
@@ -33,6 +76,7 @@ public class NewBank {
 		john.addAccount(new Account("Main", 250.0));
 		john.addAccount(new Account("Savings", 250.0));
 		customers.put("j", john);
+
 
 		/* Create  a new user here by uncommenting the below and setting values  */
 
