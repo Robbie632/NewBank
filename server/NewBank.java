@@ -118,8 +118,12 @@ public class NewBank {
 				} catch(ArrayIndexOutOfBoundsException e) {
 					status = false;
 			}
-
 			break;
+
+			case "END" :
+				System.out.println("****  Thank you for using NewBank  ****");
+				System.exit(0);
+				break;
 
 			default : return "FAIL";
 			}
