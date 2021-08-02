@@ -73,6 +73,8 @@ steps from above
 	}
 ````
 
+
+
 ## Tests
 
 ### Manual Tests: 
@@ -91,14 +93,29 @@ steps from above
 
 ```Log In Successful. What do you want to do?```
 
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
+
 - do same as above but enter wrong username or password
 
+- do same as above but enter wrong username 
+
+
 - response should be: 
-```Log In Failed``` 
+
+```Username entered is valid.``` 
 
 Then it asks for username and password again
 
+- Enter correct username but incorrect password
 
+- response should be:
+
+```incorrect username inputted```
+  
 
 #### SHOWMYACCOUNTS:
 
@@ -109,6 +126,15 @@ Then it asks for username and password again
 ```Main opening balance : 250.0 currentBalance : 250.0```
 ```Savings opening balance : 250.0 currentBalance : 250.0```
 
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
 
 
 #### NEWACCOUNT [Name]:
@@ -124,6 +150,16 @@ where :
 - if account already exists for customer, response should be:
 
 ```FAIL```
+
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
 
 
 
@@ -146,6 +182,28 @@ where :
 - if accounts [From] and [To] are the same, or they both don't already exist for customer, response should be:
 
 ```FAIL```
+
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
+
+
+#### END:
+
+- enter END
+
+- returns the following statement:
+
+```****  Thank you for using NewBank  ****```
+
+- will terminate program for customer
+
 
 #### SHOWMYTRANSACTIONS
 

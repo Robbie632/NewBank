@@ -50,20 +50,32 @@ public class NewBank {
 	* checks if username exists and if password correct
 	* @param userName, username to check
 	* @param password, password to check
-	* @return either null or the customer id
+	* @return object that contains the log in status, any messages and
+	* the information returned from a successful log in
 	* */
-	public synchronized CustomerID checkLogInDetails(String userName, String password) {
+	public synchronized Output checkLogInDetails(String userName, String password) {
+
+		Output out = new Output();
 
 		if(customers.containsKey(userName)) {
 			Customer relevantCustomer = customers.get(userName);
 			if (relevantCustomer.checkPassword(password)) {
-				return new CustomerID(userName);
+				out.setStatus(true);
+				out.addMessage("Log In Successful. What do you want to do?");
+				out.setInformation(new CustomerID(userName));
+				return out;
 			} else {
-				System.out.println("Password entered is incorrect.");
-				return null;
+				out.setStatus(false);
+				out.addMessage("Username entered is valid.");
+				out.addMessage("Password entered is incorrect.");
+
+				return out;
 			}
+		} else {
+			out.setStatus(false);
+			out.addMessage("incorrect username inputted");
 		}
-		return null;
+		return out;
 	}
 
 	public synchronized boolean isCustomer(String userName , String password){
@@ -111,8 +123,12 @@ public class NewBank {
 				} catch(ArrayIndexOutOfBoundsException e) {
 					status = false;
 			}
-
 			break;
+
+			case "END" :
+				System.out.println("****  Thank you for using NewBank  ****");
+				System.exit(0);
+				break;
 
 			default : return "FAIL";
 			}
