@@ -97,6 +97,7 @@ steps from above
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 - do same as above but enter wrong username or password
@@ -159,6 +160,7 @@ where :
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 
@@ -191,7 +193,10 @@ where :
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
+
+
 
 #### PAY [Person/Company] [Amount]:
 where :
@@ -217,8 +222,8 @@ where :
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
-
 
 
 #### SHOWMYTRANSACTIONS
@@ -245,6 +250,7 @@ SUCCESS
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 
