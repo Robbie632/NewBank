@@ -150,6 +150,11 @@ public class Customer {
 		accounts.add(account);		
 	}
 
+	// method to get first account listed for the customer
+	public Account getAccount(){
+		return accounts.get(0);
+	}
+
 	public void addTransaction(Transaction transaction) { transactions.add(transaction); };
 
 	/**
