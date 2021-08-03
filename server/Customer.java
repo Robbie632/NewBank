@@ -1,17 +1,34 @@
 package server;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 //todo add method here to add password and to check password
 public class Customer {
-	
+
+	private final static Logger LOGGER = Logger.getLogger(NewBank.class.getName());
 	private ArrayList<Account> accounts;
 	private ArrayList<Transaction> transactions;
 	private String password;
 	
 	public Customer() {
-
 		accounts = new ArrayList<>();
+
+		//all levels of message up to and including INFO will be written
+		try{
+			FileHandler fh = new FileHandler("MyLogFile.log");
+			SimpleFormatter formatter = new SimpleFormatter();
+			fh.setFormatter(formatter);
+			LOGGER.addHandler(fh);
+		} catch(IOException e) {
+			System.out.println("error initialising logfile");
+		}
+
+		LOGGER.setLevel(Level.INFO);
 		transactions = new ArrayList<>();
 	}
 
@@ -87,7 +104,7 @@ public class Customer {
 		try {
 			numericAmount = Double.parseDouble(amount);
 		} catch(NumberFormatException e) {
-			System.out.println("invalid amount entered");
+			LOGGER.warning("invalid amount entered");
 			return false;
 		}
 		// check if the savings from and to are the same
@@ -103,8 +120,9 @@ public class Customer {
 				toStatus=true;
 			}
 		}
-		//if at least one account doesnt exist, return false
+		//if at least one account doesn't exist, return false
 		if (!fromStatus | !toStatus) {
+			LOGGER.warning("at least one account in MOVE command doesn't exist");
 			return false;
 		}
 

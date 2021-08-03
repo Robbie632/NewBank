@@ -4,6 +4,14 @@ import server.*;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import java.util.logging.Logger;
+
+import java.util.logging.Logger;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
+import java.util.logging.Level;
 public class Main {
 
     public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
@@ -14,6 +22,7 @@ public class Main {
     }
     public void startClient(String ip, int port) throws UnknownHostException, IOException, InterruptedException {
         new ExampleClient(ip,port).start();
+
     }
     public void startServer(int port) throws IOException {
         // starts a new NewBankServer thread on a specified port number
