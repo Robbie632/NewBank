@@ -73,6 +73,8 @@ steps from above
 	}
 ````
 
+
+
 ## Tests
 
 ### Manual Tests: 
@@ -91,14 +93,29 @@ steps from above
 
 ```Log In Successful. What do you want to do?```
 
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
+
 - do same as above but enter wrong username or password
 
+- do same as above but enter wrong username 
+
+
 - response should be: 
-```Log In Failed``` 
+
+```Username entered is valid.``` 
 
 Then it asks for username and password again
 
+- Enter correct username but incorrect password
 
+- response should be:
+
+```incorrect username inputted```
+  
 
 #### SHOWMYACCOUNTS:
 
@@ -109,11 +126,20 @@ Then it asks for username and password again
 ```Main opening balance : 250.0 currentBalance : 250.0```
 ```Savings opening balance : 250.0 currentBalance : 250.0```
 
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
 
 
-#### NEWACCOUNT <Name>:
+#### NEWACCOUNT [Name]:
 where :
-<Name> : the name of a new account
+[Name] : the name of a new account
 
 - enter NEWACCOUNT Checking
 
@@ -125,23 +151,72 @@ where :
 
 ```FAIL```
 
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
 
 
-#### MOVE <Amount> <From> <To>:
+
+#### MOVE [Amount] [From] [To]:
 where :
-<amount> : the amount of money to be moved
 
-<fromAccount> : name of an existing account associated with the person you are logged in as to move money from
+[amount] : the amount of money to be moved
 
-<toAccount> : name of an existing account associated with the person you are logged in as to move money to
+[fromAccount] : name of an existing account associated with the person you are logged in as to move money from
+
+[toAccount] : name of an existing account associated with the person you are logged in as to move money to
 
 
 - enter MOVE 50 Main Savings
 
-- if accounts <From> and <To> are not the same and they both already exist for customer, response should be:
+- if accounts [From] and [To] are not the same, and they both already exist for customer, response should be:
 
 ```SUCCESS```
 
-- if accounts <From> and <To> are the same or they both don't already exist for customer, response should be:
+- if accounts [From] and [To] are the same, or they both don't already exist for customer, response should be:
 
 ```FAIL```
+
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```END - TO exit NewBank.```
+
+
+#### END:
+
+- enter END
+
+- returns the following statement:
+
+```****  Thank you for using NewBank  ****```
+
+- will terminate program for customer
+
+
+#### SHOWMYTRANSACTIONS
+
+should return information on all transactions done during the session, 
+example output after having moved money is shown below:
+
+```
+transaction type was : 
+move
+Involved parties were: 
+Savings
+Main
+amount was: 
+1234.0
+SUCCESS
+```

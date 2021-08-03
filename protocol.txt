@@ -14,6 +14,19 @@ MOVE <Amount> <From> <To>
 e.g. MOVE 100 Main Savings 
 Returns SUCCESS or FAIL
 
-PAY <Person/Company> <Ammount>
+PAY <Person/Company> <Amount>
 e.g. PAY John 100
 Returns SUCCESS or FAIL
+
+SHOWMYTRANSACTIONS
+returns information on transactions during session, for example:
+
+transaction type was :
+move
+Involved parties were:
+Savings
+Main
+amount was:
+1234.0
+SUCCESS
+

@@ -42,35 +42,50 @@ public class NewBankClientHandler extends Thread{
 				}
 			}
 
-			if (bank.isCustomer(userName, password)){
-
-				out.println("Checking Details...");
-				// authenticate user and get customer ID token from bank for use in subsequent requests
-				CustomerID customer = bank.checkLogInDetails(userName, password);
-				// if the user is authenticated then get requests from the user and process them
-				if(customer != null) {
-					out.println("Log In Successful. What do you want to do?");
-					while(true) {
-						String request = in.readLine();
-						System.out.println("Request from " + customer.getKey());
-						String responce = bank.processRequest(customer, request);
-						out.println(responce);
-					}
+			out.println("Checking Details...");
+			// authenticate user and get customer ID token from bank for use in subsequent requests
+			Output loginFeedback = bank.checkLogInDetails(userName, password);
+			//check for successful log in
+			if(loginFeedback.getStatus()) {
+				//extract customer ID
+				Object customerObject = loginFeedback.getInformation();
+				CustomerID customer = (CustomerID) customerObject;
+				//loop through messages and print
+				for (String message:loginFeedback.getMessages()) {
+					System.out.println(message + "\n");
 				}
-				else {
-					out.println("Log In Failed");
-					// ask for username and password again
-					run();
+					out.println();
+					out.println("SHOWMYACCOUNTS - to view a list of your accounts and their balance");
+					out.println("NEWACCOUNT <Name> - to open a new account with the name you provide");
+					out.println("MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another");
+					out.println("PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing");
+					out.println("END - To exit NewBank.");
+					out.println();
+				//listen for commands from user
+				while(true) {
+					String request = in.readLine();
+					System.out.println("Request from " + customer.getKey());
+					String responce = bank.processRequest(customer, request);
+					out.println(responce);
+					out.println("What else would you like to do?");
+						out.println();
+						out.println("SHOWMYACCOUNTS - To view a list of your accounts and their balance.");
+						out.println("NEWACCOUNT <Name> - To open a new account with the name you provide.");
+						out.println("MOVE <Amount> <From> <To> - To move an amount of money from one of your accounts to another.");
+						out.println("PAY <Person/Company> <Amount> - To pay an amount of money to a person or company of your choosing.");
+						out.println("END - To exit NewBank.");
+						out.println();
 				}
-
-			} else {
-				System.out.println("User not found - please create account");
-				System.out.println("\n");
+				// start accepting input by using while true{ blah blah
+			}
+			//login has been unsuccessful
+			else {
+				//print messages for why login was unsuccessful
+				for (String message:loginFeedback.getMessages()) {
+					System.out.println(message + "\n");
+				}
 				run();
 			}
-
-
-
 
 		} catch (IOException e) {
 			e.printStackTrace();
