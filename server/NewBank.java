@@ -162,6 +162,7 @@ public class NewBank {
 					status = false;
 			} 
 			break;
+			
 			//if user asks to see transactions
 			case "SHOWMYTRANSACTIONS" :
 				customers.get(customer.getKey()).printTransactions();
