@@ -146,11 +146,6 @@ public class NewBank {
 			}
 			break;
 
-
-			default :
-				LOGGER.warning("no valid operation input found");
-				return "FAIL";
-          
 			case "END" :
 				System.out.println("****  Thank you for using NewBank  ****");
 				System.exit(0);
