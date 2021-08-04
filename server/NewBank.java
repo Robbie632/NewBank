@@ -22,7 +22,7 @@ public class NewBank {
 			fh.setFormatter(formatter);
 			LOGGER.addHandler(fh);
 		} catch(IOException e) {
-			System.out.println("error initialising logfile");
+			System.out.println("Error initialising logfile");
 		}
 
 		LOGGER.setLevel(Level.INFO);
@@ -93,7 +93,7 @@ public class NewBank {
 			}
 		} else {
 			out.setStatus(false);
-			out.addMessage("incorrect username inputted");
+			out.addMessage("Incorrect username inputted");
 		}
 		return out;
 	}
@@ -123,6 +123,7 @@ public class NewBank {
 			numericAmount = Double.parseDouble(amount);
 		} catch(NumberFormatException e) {
 			System.out.println("Invalid amount entered.");
+			LOGGER.warning("Invalid amount entered");
 			return false;
 		}
 
@@ -131,9 +132,14 @@ public class NewBank {
 			return false;
 		}
 
-		// removes the amount of money chosen by the customer from the first account listed under their name and adds it to the the first account listed under the name of the customer receiving the money
-		customers.get(customer.getKey()).getAccount().updateBalance(-numericAmount);
-		customers.get(recipient.getKey()).getAccount().updateBalance(numericAmount);
+		//Provided there is sufficient funds, removes the amount of money chosen by the customer from the first  account listed under their name and adds it to the the first account  listed under the name of the customer receiving the money
+		if(customers.get(customer.getKey()).getAccount().checkBalance(numericAmount) == true){
+			customers.get(customer.getKey()).getAccount().minusBalance(numericAmount);
+			customers.get(recipient.getKey()).getAccount().addBalance(numericAmount);
+		}
+			else {
+				return false;
+			}
 		
 		//store details of transaction
 		ArrayList<String> parties = new ArrayList<>();
@@ -165,6 +171,7 @@ public class NewBank {
 					status = customers.get(customer.getKey()).newAccount(current, request_params[1]);
 				//catch exception if incorrect number of parameters are inputted	
 				} catch(ArrayIndexOutOfBoundsException e) {
+					LOGGER.severe("Wrong number of input arguments, exception: " + e);
 					status = false;
 			} 
 			break;
@@ -192,6 +199,7 @@ public class NewBank {
 				status = pay(customer, request_params[1], request_params[2]);
 			//catch exception if incorrect number of parameters are inputted
 			} catch(ArrayIndexOutOfBoundsException e) {
+				LOGGER.severe("Wrong number of input arguments, exception: " + e);
 				status = false;
 			}
 				break;

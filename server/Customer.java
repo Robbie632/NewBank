@@ -78,6 +78,7 @@ public class Customer {
 
 		//if account exists return false
 		if(accountExists){
+			LOGGER.warning("Account already exists.");
 			return false;
 		}
 
@@ -122,7 +123,7 @@ public class Customer {
 		}
 		//if at least one account doesn't exist, return false
 		if (!fromStatus | !toStatus) {
-			LOGGER.warning("at least one account in MOVE command doesn't exist");
+			LOGGER.warning("At least one account in MOVE command doesn't exist");
 			return false;
 		}
 
