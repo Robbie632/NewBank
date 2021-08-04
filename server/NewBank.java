@@ -1,6 +1,5 @@
 package server;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.FileHandler;
@@ -105,6 +104,40 @@ public class NewBank {
 			return false;
 		}
 	}
+
+	/*
+	*  pay other person or company in NewBank a certain amount of money
+	* @param customer, customer who wishes to make the payment
+	* @param to, customer to which the amount of money is to be paid to
+	* @param amount, amount which will be paid
+	* */
+	public boolean pay(CustomerID customer, String to, String amount) {
+
+		Double numericAmount;
+		CustomerID recipient = new CustomerID(to);
+
+		//try to convert amount to double
+		try {
+			numericAmount = Double.parseDouble(amount);
+		} catch(NumberFormatException e) {
+			System.out.println("Invalid amount entered.");
+			return false;
+		}
+
+		// checks if the customer being paid is the same as the customer instantiating the payment
+		if(customer.getKey().equals(recipient.getKey())){
+			return false;
+		}
+
+		// removes the amount of money chosen by the customer from the first account listed under their name and adds it to the the first account listed under the name of the customer receiving the money
+		customers.get(customer.getKey()).getAccount().updateBalance(-numericAmount);
+		customers.get(recipient.getKey()).getAccount().updateBalance(numericAmount);
+		
+
+		// if code reaches here payment has been successful
+		return true;
+	}
+
 	/*
 	* commands from the NewBank customer are processed in this method
 	* @param customer, the id of the customer processing the request
@@ -129,6 +162,7 @@ public class NewBank {
 					status = false;
 			} 
 			break;
+			
 			//if user asks to see transactions
 			case "SHOWMYTRANSACTIONS" :
 				customers.get(customer.getKey()).printTransactions();
@@ -145,6 +179,16 @@ public class NewBank {
 					status = false;
 			}
 			break;
+
+			//attempt to pay another customer a certain amount of money
+			case "PAY" :
+			try {
+				status = pay(customer, request_params[1], request_params[2]);
+			//catch exception if incorrect number of parameters are inputted
+			} catch(ArrayIndexOutOfBoundsException e) {
+				status = false;
+			}
+				break;
 
 			case "END" :
 				System.out.println("****  Thank you for using NewBank  ****");

@@ -97,6 +97,7 @@ steps from above
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 - do same as above but enter wrong username or password
@@ -159,6 +160,7 @@ where :
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 
@@ -191,18 +193,37 @@ where :
 ```NEWACCOUNT <Name> - to open a new account with the name you provide```
 ```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
 
-#### END:
 
-- enter END
+#### PAY [Person/Company] [Amount]:
+where :
+[Person/Company] : the name of the person or company you wish to pay
 
-- returns the following statement:
+[Amount] : the amount of money you wish to pay them
 
-```****  Thank you for using NewBank  ****```
+- enter PAY c 50
 
-- will terminate program for customer
+- if the customer to pay the money to exists and the money is transferred to the payee:
+
+```SUCCESS```
+
+- if account chosen to pay is the same as that of the customer instantiating the payment or the customer does not exist
+
+```FAIL```
+
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
+```END - TO exit NewBank.```
 
 
 #### SHOWMYTRANSACTIONS
@@ -220,3 +241,27 @@ amount was:
 1234.0
 SUCCESS
 ```
+
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
+```END - TO exit NewBank.```
+
+
+#### END:
+
+- enter END
+
+- returns the following statement:
+
+```****  Thank you for using NewBank  ****```
+
+- will terminate program for customer
+
+

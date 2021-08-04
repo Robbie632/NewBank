@@ -59,6 +59,7 @@ public class NewBankClientHandler extends Thread{
 					out.println("NEWACCOUNT <Name> - to open a new account with the name you provide");
 					out.println("MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another");
 					out.println("PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing");
+					out.println("SHOWMYTRANSACTIONS - to return information on all transactions done during the session");
 					out.println("END - To exit NewBank.");
 					out.println();
 				//listen for commands from user
@@ -73,6 +74,7 @@ public class NewBankClientHandler extends Thread{
 						out.println("NEWACCOUNT <Name> - To open a new account with the name you provide.");
 						out.println("MOVE <Amount> <From> <To> - To move an amount of money from one of your accounts to another.");
 						out.println("PAY <Person/Company> <Amount> - To pay an amount of money to a person or company of your choosing.");
+						out.println("SHOWMYTRANSACTIONS - to return information on all transactions done during the session");
 						out.println("END - To exit NewBank.");
 						out.println();
 				}
