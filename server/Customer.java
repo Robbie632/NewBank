@@ -127,7 +127,8 @@ public class Customer {
 			return false;
 		}
 
-		//updateBalance
+		//checks if the 'from' account has sufficient funds
+		//if there are sufficient money is removed from the 'from' account and added to the 'to' account
 		for (Account a: accounts){
 			if(a.getAccountName().equals(from)){
 				if(a.checkBalance(numericAmount) == true){
@@ -173,13 +174,13 @@ public class Customer {
 	public void printTransactions() {
 
 		for (Transaction tr: transactions) {
-			System.out.println("transaction type was : ");
+			System.out.println("Transaction type was : ");
 			System.out.println(tr.getTransactionType());
 			System.out.println("Involved parties were: ");
 			for (String party:tr.getInvolvedParties()) {
 				System.out.println(party);
 			}
-			System.out.println("amount was: ");
+			System.out.println("Amount was: ");
 			System.out.println(""+tr.getAmount());
 			System.out.println();
 		}

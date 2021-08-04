@@ -122,7 +122,6 @@ public class NewBank {
 		try {
 			numericAmount = Double.parseDouble(amount);
 		} catch(NumberFormatException e) {
-			System.out.println("Invalid amount entered.");
 			LOGGER.warning("Invalid amount entered");
 			return false;
 		}
@@ -188,7 +187,7 @@ public class NewBank {
 					status = customers.get(customer.getKey()).moveMoney(request_params[1], request_params[2], request_params[3]);
 				//catch exception if incorrect number of parameters are inputted
 				} catch(ArrayIndexOutOfBoundsException e) {
-					LOGGER.severe("wrong number of input arguments, exception: " + e);
+					LOGGER.severe("Wrong number of input arguments, exception: " + e);
 					status = false;
 			}
 			break;
@@ -210,16 +209,16 @@ public class NewBank {
 				break;
 
 			default :
-				LOGGER.warning("no valid operation input found");
+				LOGGER.warning("No valid operation input found");
 				return "FAIL";
 
 			}
 		}
 		if (status){
-			LOGGER.info("command processed correctly");
+			LOGGER.info("Command processed correctly");
 			return "SUCCESS";
 		} else {
-			LOGGER.warning("processed command failed");
+			LOGGER.warning("Processed command failed");
 			return "FAIL";
 		}
 	}
