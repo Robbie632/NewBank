@@ -138,6 +138,26 @@ Then it asks for username and password again
 ```END - TO exit NewBank.```
 
 
+### Loans
+
+To display the loans (use the command below)
+
+````shell
+SHOWMYLOANS
+````
+
+You will see the below (e.g. below using the user j with test data)
+````shell 
+Request from j
+Total borrowed : £ 150.0         rate: 10.0%
+````
+
+Additional command will be supported such as
+- Adding loans
+- Making loans to other user
+- Paying off loans
+
+
 #### NEWACCOUNT [Name]:
 where :
 [Name] : the name of a new account
