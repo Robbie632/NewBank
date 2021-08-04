@@ -196,7 +196,13 @@ where :
 ```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
+- To confirm that a user is not allowed to have a negative balance 
 
+- enter MOVE 500 Main Savings
+
+```Insufficient funds```
+
+- command is not executed and fails
 
 #### PAY [Person/Company] [Amount]:
 where :
@@ -224,6 +230,14 @@ where :
 ```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
 ```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
+
+- To confirm that a user is not allowed to have a negative balance 
+
+- enter PAY c 500
+
+```Insufficient funds```
+
+- command is not executed and fails
 
 
 #### SHOWMYTRANSACTIONS
