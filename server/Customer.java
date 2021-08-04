@@ -128,16 +128,25 @@ public class Customer {
 		}
 
 		//updateBalance
-		for (Account a:accounts) {
-			if (a.getAccountName().equals(from)){
-				a.updateBalance(-numericAmount);
-
+		for (Account a: accounts){
+			if(a.getAccountName().equals(from)){
+				if(a.checkBalance(numericAmount) == true){
+				a.minusBalance(numericAmount);
+				}
+				else{
+				return false;
+				}
 			}
-			if (a.getAccountName().equals(to)){
-				a.updateBalance(numericAmount);
-
+		
+			if(a.getAccountName().equals(from)){
+				if(a.checkBalance(numericAmount) == true){
+					if(a.getAccountName().equals(to)){
+						a.addBalance(numericAmount);
+					}
+				}
 			}
-		}
+
+}
 		// if code reaches here money transfer would have been successful
 		//store details of transaction
 		ArrayList<String> parties = new ArrayList<>();
