@@ -78,6 +78,7 @@ public class Customer {
 
 		//if account exists return false
 		if(accountExists){
+			LOGGER.warning("Account already exists.");
 			return false;
 		}
 
@@ -122,21 +123,31 @@ public class Customer {
 		}
 		//if at least one account doesn't exist, return false
 		if (!fromStatus | !toStatus) {
-			LOGGER.warning("at least one account in MOVE command doesn't exist");
+			LOGGER.warning("At least one account in MOVE command doesn't exist");
 			return false;
 		}
 
-		//updateBalance
-		for (Account a:accounts) {
-			if (a.getAccountName().equals(from)){
-				a.updateBalance(-numericAmount);
-
+		//checks if the 'from' account has sufficient funds
+		//if there are sufficient money is removed from the 'from' account and added to the 'to' account
+		for (Account a: accounts){
+			if(a.getAccountName().equals(from)){
+				if(a.checkBalance(numericAmount) == true){
+				a.minusBalance(numericAmount);
+				}
+				else{
+				return false;
+				}
 			}
-			if (a.getAccountName().equals(to)){
-				a.updateBalance(numericAmount);
-
+		
+			if(a.getAccountName().equals(from)){
+				if(a.checkBalance(numericAmount) == true){
+					if(a.getAccountName().equals(to)){
+						a.addBalance(numericAmount);
+					}
+				}
 			}
-		}
+
+}
 		// if code reaches here money transfer would have been successful
 		//store details of transaction
 		ArrayList<String> parties = new ArrayList<>();
@@ -163,13 +174,13 @@ public class Customer {
 	public void printTransactions() {
 
 		for (Transaction tr: transactions) {
-			System.out.println("transaction type was : ");
+			System.out.println("Transaction type was : ");
 			System.out.println(tr.getTransactionType());
 			System.out.println("Involved parties were: ");
 			for (String party:tr.getInvolvedParties()) {
 				System.out.println(party);
 			}
-			System.out.println("amount was: ");
+			System.out.println("Amount was: ");
 			System.out.println(""+tr.getAmount());
 			System.out.println();
 		}
