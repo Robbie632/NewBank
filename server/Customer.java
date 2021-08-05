@@ -171,6 +171,7 @@ public class Customer {
 			}
 			System.out.println("amount was: ");
 			System.out.println(""+tr.getAmount());
+			System.out.println();
 		}
 	}
 

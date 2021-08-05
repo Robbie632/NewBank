@@ -6,6 +6,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.ArrayList;
 
 public class NewBank {
 
@@ -115,6 +116,7 @@ public class NewBank {
 
 		Double numericAmount;
 		CustomerID recipient = new CustomerID(to);
+		Customer current = customers.get(customer.getKey());
 
 		//try to convert amount to double
 		try {
@@ -133,7 +135,11 @@ public class NewBank {
 		customers.get(customer.getKey()).getAccount().updateBalance(-numericAmount);
 		customers.get(recipient.getKey()).getAccount().updateBalance(numericAmount);
 		
-
+		//store details of transaction
+		ArrayList<String> parties = new ArrayList<>();
+		parties.add(customer.getKey());
+		parties.add(to);
+		current.addTransaction(new Transaction("payment", parties, numericAmount));
 		// if code reaches here payment has been successful
 		return true;
 	}
