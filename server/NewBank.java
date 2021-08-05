@@ -37,6 +37,7 @@ public class NewBank {
 		bhagy.setPassword("1");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		bhagy.addAccount(new Account("Savings", 1000.0));
+		bhagy.addLoan(new Loan(100 , 25.5 , 24));
 		customers.put("b", bhagy);
 		
 		Customer christina = new Customer();
@@ -44,6 +45,7 @@ public class NewBank {
 		christina.setPassword("2");
 		christina.addAccount(new Account("Savings", 1500.0));
 		christina.addAccount(new Account("Main", 100.0));
+//		christina.addLoan(new Loan(75 , 25.5 , 24));
 		customers.put("c", christina);
 		
 		Customer john = new Customer();
@@ -51,6 +53,7 @@ public class NewBank {
 		john.setPassword("3");
 		john.addAccount(new Account("Main", 250.0));
 		john.addAccount(new Account("Savings", 250.0));
+		john.addLoan(new Loan(150, 10 , 24));
 		customers.put("j", john);
 
 		/* Create  a new user here by uncommenting the below and setting values  */
@@ -162,7 +165,8 @@ public class NewBank {
 			switch(request_params[0]) {
 
 			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
-			
+
+
 			//add new account (only works if account does not already exist for customer)
 			case "NEWACCOUNT" :
 			Customer current = customers.get(customer.getKey());
@@ -179,6 +183,14 @@ public class NewBank {
 			case "SHOWMYTRANSACTIONS" :
 				customers.get(customer.getKey()).printTransactions();
 				status = true;
+			break;
+
+
+			// Loans
+			case "SHOWMYLOANS" :
+				customers.get(customer.getKey()).printLoans();
+				status = true;
+
 			break;
 
 			//attempt to move money between accounts

@@ -13,6 +13,7 @@ public class Customer {
 	private final static Logger LOGGER = Logger.getLogger(NewBank.class.getName());
 	private ArrayList<Account> accounts;
 	private ArrayList<Transaction> transactions;
+	private ArrayList<Loan> loans = new ArrayList<Loan>();
 	private String password;
 	
 	public Customer() {
@@ -60,6 +61,23 @@ public class Customer {
 		}
 		return s;
 	}
+
+
+
+	/* Loans */
+	public void printLoans(){
+
+		for (var loan : loans){
+			System.out.println(loan.toString());
+		}
+	}
+
+	/* Add Loans */
+	public void addLoan(Loan loan){
+		loans.add(loan);
+	}
+
+
 
 	/*
 	* add new account for customer
@@ -160,6 +178,8 @@ public class Customer {
 	public void addAccount(Account account) {
 		accounts.add(account);		
 	}
+
+
 
 	// method to get first account listed for the customer
 	public Account getAccount(){

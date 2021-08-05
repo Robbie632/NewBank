@@ -56,6 +56,7 @@ public class NewBankClientHandler extends Thread{
 				}
 					out.println();
 					out.println("SHOWMYACCOUNTS - to view a list of your accounts and their balance");
+					out.println("SHOWMYLOANS - to view a list of your loans");
 					out.println("NEWACCOUNT <Name> - to open a new account with the name you provide");
 					out.println("MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another");
 					out.println("PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing");
