@@ -9,7 +9,7 @@ import java.net.Socket;
 public class NewBankClientHandler extends Thread{
 	
 	private NewBank bank;
-	private BufferedReader in;
+	private static BufferedReader in;
 	private PrintWriter out;
 	
 	
@@ -103,5 +103,28 @@ public class NewBankClientHandler extends Thread{
 			}
 		}
 	}
+
+		// asks user to confirm if the details they for either a MOVE or PAY command are correct before proceeding
+		public static boolean confirmDetails(){
+			System.out.println("Please confirm the above details are correct (Y/N)");
+			try{
+				String choice = in.readLine();
+				switch(choice){
+					case "Y":
+					return true;
+		
+					case "N":
+					return false;
+		
+					default :
+					System.out.println("Wrong input, please enter 'Y' for yes or 'N' for no");
+					return false;
+				}
+			} catch(IOException e){
+					System.out.println("Wrong input argument, exception: " + e);
+				}
+			return false;
+				
+		}
 
 }
