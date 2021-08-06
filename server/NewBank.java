@@ -195,23 +195,27 @@ public class NewBank {
 
 			//attempt to move money between accounts
 			case "MOVE" :
+			if(NewBankClientHandler.confirmDetails() == true){
 				try {
 					status = customers.get(customer.getKey()).moveMoney(request_params[1], request_params[2], request_params[3]);
 				//catch exception if incorrect number of parameters are inputted
 				} catch(ArrayIndexOutOfBoundsException e) {
 					LOGGER.severe("Wrong number of input arguments, exception: " + e);
 					status = false;
+				}
 			}
 			break;
 
 			//attempt to pay another customer a certain amount of money
 			case "PAY" :
+			if(NewBankClientHandler.confirmDetails() == true){
 			try {
 				status = pay(customer, request_params[1], request_params[2]);
 			//catch exception if incorrect number of parameters are inputted
 			} catch(ArrayIndexOutOfBoundsException e) {
 				LOGGER.severe("Wrong number of input arguments, exception: " + e);
 				status = false;
+				}
 			}
 				break;
 
