@@ -197,6 +197,16 @@ where :
 
 - enter MOVE 50 Main Savings
 
+```Please confirm the above details are correct (Y/N)```
+
+- enter Y and the command entered is executed
+
+- enter N and the command is not executed
+
+- if wrong input is inputted, statement indicating this is printed:
+
+```Wrong input, please enter 'Y' for yes or 'N' for no```
+
 - if accounts [From] and [To] are not the same, and they both already exist for customer, response should be:
 
 ```SUCCESS```
@@ -204,17 +214,6 @@ where :
 - if accounts [From] and [To] are the same, or they both don't already exist for customer, response should be:
 
 ```FAIL```
-
-- then a prompt to select other commands or terminate the program is shown:
-
-```What else would you like to do?```
-
-```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
-```NEWACCOUNT <Name> - to open a new account with the name you provide```
-```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
-```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
-```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
-```END - TO exit NewBank.```
 
 - To confirm that a user is not allowed to have a negative balance 
 
@@ -224,6 +223,19 @@ where :
 
 - command is not executed and fails
 
+- then a prompt to select other commands or terminate the program is shown:
+
+```What else would you like to do?```
+
+```SHOWMYACCOUNTS - to view a list of your accounts and their balance```
+```NEWACCOUNT <Name> - to open a new account with the name you provide```
+```MOVE <Amount> <From> <To> - to move an amount of money from one of your accounts to another```
+```PAY <Person/Company> <Amount> - to pay an amount of money to a person or company of your choosing```
+```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
+```END - TO exit NewBank.```
+
+
+
 #### PAY [Person/Company] [Amount]:
 where :
 [Person/Company] : the name of the person or company you wish to pay
@@ -232,6 +244,16 @@ where :
 
 - enter PAY c 50
 
+```Please confirm the above details are correct (Y/N)```
+
+- enter Y and the command entered is executed
+
+- enter N and the command is not executed
+
+- if wrong input is inputted, statement indicating this is printed:
+
+```Wrong input, please enter 'Y' for yes or 'N' for no```
+
 - if the customer to pay the money to exists and the money is transferred to the payee:
 
 ```SUCCESS```
@@ -239,6 +261,14 @@ where :
 - if account chosen to pay is the same as that of the customer instantiating the payment or the customer does not exist
 
 ```FAIL```
+
+- To confirm that a user is not allowed to have a negative balance 
+
+- enter PAY c 500
+
+```Insufficient funds```
+
+- command is not executed and fails
 
 - then a prompt to select other commands or terminate the program is shown:
 
@@ -251,13 +281,6 @@ where :
 ```SHOWMYTRANSACTIONS - to return information on all transactions done during the session```
 ```END - TO exit NewBank.```
 
-- To confirm that a user is not allowed to have a negative balance 
-
-- enter PAY c 500
-
-```Insufficient funds```
-
-- command is not executed and fails
 
 
 #### SHOWMYTRANSACTIONS
