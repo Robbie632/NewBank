@@ -1,7 +1,12 @@
 # Cli Bank
 Contains java code for the NewBank command line interface implemented for Software Engineering 2, Computer Science MSc, University of Bath.
 
-# Background
+
+#Contents
+
+[Logging In](#logging-in)
+
+# Background 
 
 The application consists of a server (server folder) which contains the business logic for the bank and a front-end (client folder) which allows a user to interact with the server.
 
@@ -34,6 +39,7 @@ To start the application run (This runs the compiled Main file within the out di
 java -classpath ./out/ Main
 ```
 
+<a name="logging"></a>
 ## Logging in
 
 The cli tool currently has a hardcoded set of users that it checks when you log in. To create a new user you need to 
@@ -320,5 +326,4 @@ SUCCESS
 ```****  Thank you for using NewBank  ****```
 
 - will terminate program for customer
-
 
