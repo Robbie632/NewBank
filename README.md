@@ -1,12 +1,12 @@
-# Cli Bank
-Contains java code for the NewBank command line interface implemented for Software Engineering 2, Computer Science MSc, University of Bath.
+# NewBank CLI
+This repository contains code (Java) to enable the NewBank Command Line Interface (CLI). This is implemented for the University of Bath Software Engineering 2 module, for the Computer Science MSc.
 
 
-# Background 
+# Background
 
 ---
 
-The application consists of a server (server folder) which contains the business logic for the bank and a front-end (client folder) which allows a user to interact with the server.
+The application consists of a server (server folder) which contains the business logic for the bank and a front-end (client folder) which allows an authorised user to interact with the server.
 
 # Contents
 
@@ -15,11 +15,11 @@ The application consists of a server (server folder) which contains the business
 
 1. [Getting started](#getting-started)
 2. [Running the application](#running-the-application)
-    - [Method 1 - Using intellij](#option-1---use-intellij)
+    - [Method 1 - Using IntelliJ](#option-1---use-intellij)
     - [Method 2 - Using the command line](#option-2---from-the-command-line)
 3. [Logging In](#logging-in)
- 
-4. [Supported commands](#commands) 
+
+4. [Supported commands](#commands)
    - [Navigation](#navigation)
    - [Accounts](#showmyaccounts)
       - [View accounts](#showmyaccounts)
@@ -29,7 +29,7 @@ The application consists of a server (server folder) which contains the business
       - [View loans](#loans)
    - [Payments](#pay-another-user)
    - [Transactions](#transactions)
-   
+
 <br>
 
 # Getting started
@@ -42,37 +42,37 @@ git clone https://github.com/Robbie632/NewBank.git
 
 ## Running the application
 
-To run and interact with the bank you need to 
+To run and interact with the bank you need to:
 
 ### Compile the code
 
 #### Option 1 - Use Intellij
 
-If using Intellij the open up the project and navigate the Main.java file and click play
+If using Intellij, open the project, navigate to the Main.java file, and click play.
 
 #### Option 2 - From the command line
 
-Navigate to the root of the project and run the command below. (This compiles all the code and outputs it into a directory called ``'out'``)
+If working from the command line, navigate to the root of the project and run the following command:
 
 ```bash
 javac -d ./out ./client/*.java ./server/*.java ./Main.java
 ```
+This compiles all the code and outputs it into a directory called ``'out'``
 
-To start the application run (This runs the compiled Main file within the out directory)
+To start the application run the following command:
 
 ```bash
 java -classpath ./out/ Main
 ```
-
+This runs the compiled Main file within the new ``'out'`` directory.
 <br>
 
 ## Logging In
 
 ---
 
-The cli tool currently has a hardcoded set of users that it checks when you log in. To create a new user you need to 
-manually go into the ``NewBank.java`` class and add yourself in the method below. Then re-compile and run the code 
-steps from above
+The CLI tool currently has a hardcoded set of users that it checks when you log in. To create a new user
+manually navigate to the ``NewBank.java`` class and add the new user to the below method. The code should then be re-compiled and may be run as described in Section 2.
 
 
 ````java
@@ -83,14 +83,14 @@ steps from above
 		bhagy.addAccount(new Account("Main", 1000.0));
 		bhagy.addAccount(new Account("Savings", 1000.0));
 		customers.put("b", bhagy);
-		
+
 		Customer christina = new Customer();
 		//set password
 		christina.setPassword("2");
 		christina.addAccount(new Account("Savings", 1500.0));
 		christina.addAccount(new Account("Main", 100.0));
 		customers.put("c", christina);
-		
+
 		Customer john = new Customer();
 		//set password
 		john.setPassword("3");
@@ -122,24 +122,24 @@ steps from above
 
 To view the accounts for a user enter ````SHOWMYACCOUNTS````
 
-This will show a list of accounts as follows:
+This will show a list of accounts, for example:
 
-```Main opening balance : 250.0 currentBalance : 250.0```
-```Savings opening balance : 250.0 currentBalance : 250.0```
+````Main opening balance : 250.0 currentBalance : 250.0````
+````Savings opening balance : 250.0 currentBalance : 250.0````
 
 <br>
 
 #### Creating accounts:
 
-To create a a new account for a user enter ````NEWACCOUNT <NAME_OF_NEW_ACCOUNT> ````
+To create a new account for an authorised user enter: ````NEWACCOUNT <NAME_OF_NEW_ACCOUNT> ````
 
-Where ```<Name>``` is the name of the new account 
+Where ```<Name>``` is the name of the new account.
 
-- If the account does not already exist,the response should be: ```SUCCESS```
+- If the account does not already exist, the response should be: ```SUCCESS```
 
-- If account already exists for customer, response should be ```FAIL```
+- If account already exists for customer, the response should be ```FAIL```
 
-Then a prompt to select other commands or terminate the program is shown:
+A prompt to either select other commands or terminate the program is then shown:
 
 ```What else would you like to do?```
 
@@ -164,7 +164,7 @@ Then a prompt to select other commands or terminate the program is shown:
 
 To create a payment use the command ``MOVE [Amount] [From] [To]``
 
-where:
+Where:
 
 ```[amount]```  is the amount of money to be moved
 
@@ -176,25 +176,25 @@ e.g  ``enter MOVE 50 Main Savings``
 
 ```Please confirm the above details are correct (Y/N)```
 
-- enter Y and the command entered is executed
+- enter Y and the command entered is executed.
 
-- enter N and the command is not executed
+- enter N and the command entered is not executed.
 
-- if wrong input is inputted, statement indicating this is printed:
+- if wrong input is submitted, this is indicated:
 
 ```Wrong input, please enter 'Y' for yes or 'N' for no```
 
-- if accounts ```[From]``` and ```[To]``` are not the same, and they both already exist for customer, response should be:
+- if accounts ```[From]``` and ```[To]``` are not the same, and they both already exist for customer, the response should read:
 
 ```SUCCESS```
 
-- if accounts ```[From]``` and ```[To]``` are the same, or they both don't already exist for customer, response should be:
+- if accounts ```[From]``` and ```[To]``` are the same, or at least one account does not exist, the response should read:
 
 ```FAIL```
 
-- To confirm that a user is not allowed to have a negative balance
+- To confirm that a user is not allowed to have a negative balance:
 
-e.g. enter ``MOVE 500 Main Savings``
+e.g. enter ``MOVE 500 Main Savings`` when there are less than 500 in the account.
 
 ```Insufficient funds``` - The command is not executed and fails
 
@@ -206,16 +206,16 @@ e.g. enter ``MOVE 500 Main Savings``
 
 To display the loans use the command ````SHOWMYLOANS````
 
-You will see the below (e.g. below using the user j with test data)
-````shell 
+You will see the below (e.g. using the user j with test data)
+````shell
 Request from j
 Total borrowed : £ 150.0         rate: 10.0%
 ````
 
-Additional command will be supported such as
-- Adding loans
-- Making loans to other user
-- Paying off loans
+Additional commands shall be supported such as
+- Adding loans.
+- Making loans to other users.
+- Paying off loans.
 
 <br>
 
@@ -231,31 +231,31 @@ where:
 
 ```[Amount]``` is the amount of money you wish to pay them
 
-e.g enter ``PAY c 50``
+e.g. enter ``PAY c 50``
 
 ```Please confirm the above details are correct (Y/N)```
 
-- enter Y and the command entered is executed
+- enter Y and the command entered is executed.
 
-- enter N and the command is not executed
+- enter N and the command entered is not executed.
 
-- if wrong input is inputted, statement indicating this is printed:
+- if the wrong input is submitted, a statement indicating this is printed:
 
 ```Wrong input, please enter 'Y' for yes or 'N' for no```
 
-- if the customer to pay the money to exists and the money is transferred to the payee:
+- if the customer to pay the money to exists, and all other conditions are met (e.g. enough money in the outgoing account), then the money is transferred to the payee:
 
 ```SUCCESS```
 
-- if account chosen to pay is the same as that of the customer instantiating the payment or the customer does not exist
+- if the incoming account selected is the same as that of the customer instantiating the payment, or if the payee does not exist:
 
 ```FAIL```
 
-- To confirm that a user is not allowed to have a negative balance
+- If the payment would result in the outgoing account having a negative balance, the command is not executed and fails.
 
 - enter PAY c 500
 
-```Insufficient funds``` - The command is not executed and fails
+```Insufficient funds```
 
 
 ### Transactions
@@ -264,16 +264,16 @@ e.g enter ``PAY c 50``
 
 To view a list of all transactions enter ```SHOWMYTRANSACTIONS```
 
-This returns information on all transactions done during the session,
+This returns information on all transactions completed during the session,
 example output after having moved money is shown below:
 
 ```
-transaction type was : 
+transaction type was :
 move
-Involved parties were: 
+Involved parties were:
 Savings
 Main
-amount was: 
+amount was:
 1234.0
 SUCCESS
 ```
@@ -304,19 +304,19 @@ The navigation menu below is displayed after each command:
 
 ---
 
-### Manual Tests: 
+### Manual Tests:
 
-- run code via command line (as explained above)
+- run code via command line (see Section 2)
 
-- enter username: 
+- enter username:
 
 ```j```
 
-- enter password 
+- enter password
 
 ```3```
 
-- the response should be: 
+- the response should be:
 
 ```Log In Successful. What do you want to do?```
 
@@ -332,22 +332,20 @@ The navigation menu below is displayed after each command:
 
 ```END - TO exit NewBank.```
 
-- do same as above but enter wrong username or password
+- Follow the same process as described above, with the wrong username or password.
 
-- do same as above but enter wrong username 
+- Wrong username:
 
+- response should be:
 
-- response should be: 
+```Username entered is invalid.```
 
-```Username entered is valid.``` 
+Then the username and password are requested again
 
-Then it asks for username and password again
-
-- Enter correct username but incorrect password
+- Enter the correct username but incorrect password
 
 - response should be:
 
 ```incorrect username inputted```
-  
 
-
+Then the username and password are requested again
