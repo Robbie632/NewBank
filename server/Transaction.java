@@ -3,12 +3,16 @@ package server;
 import java.util.ArrayList;
 
 /**
- * Class for storing information about a transaction
+ * This represent customers transactions
+ * 
+ * @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
  */
 public class Transaction {
-
+    //the transaction type
     private String transactionType;
+    //the involved parties
     private ArrayList<String> involvedParties;
+    //the transaction amount
     private Double amount;
 
     /**
@@ -26,7 +30,7 @@ public class Transaction {
     }
 
     /**
-     * Getter method ofr transaction type
+     * Getter method for transaction type
      * @return
      */
     public String getTransactionType() {

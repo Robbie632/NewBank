@@ -4,10 +4,16 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * This extends the application main thread
+ * 
+ * @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
+ */
 public class NewBankServer extends Thread{
-	
+	//the server connection
 	private ServerSocket server;
 	
+	//Instantiates a server connection port
 	public NewBankServer(int port) throws IOException {
 		server = new ServerSocket(port);
 	}
@@ -24,6 +30,7 @@ public class NewBankServer extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//closes the server session
 		finally {
 			try {
 				server.close();
@@ -33,7 +40,11 @@ public class NewBankServer extends Thread{
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		// starts a new NewBankServer thread on a specified port number
 		new NewBankServer(14002).start();
