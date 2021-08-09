@@ -6,13 +6,24 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * This extends the main thread and represents the customer input/output handler
+ * 
+ * @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
+ */
 public class NewBankClientHandler extends Thread{
-	
+	//the instance of the bank app
 	private NewBank bank;
+	//for reading text of the customer input
 	private static BufferedReader in;
+	//prints output text 
 	private PrintWriter out;
 	
-	
+	/**
+	 * 
+	 * @param s, coomunication endpoint between the server and the customer
+	 * @throws IOException, the input and output interrruptions
+	 */
 	public NewBankClientHandler(Socket s) throws IOException {
 		bank = NewBank.getBank();
 		in = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -22,7 +33,7 @@ public class NewBankClientHandler extends Thread{
 	public void run() {
 		// keep getting requests from the client and processing them
 		try {
-			// ask for user name
+			// ask customer for user name
 			out.println("Enter Username");
 			String userName = "";
 			while(userName.isEmpty()){
@@ -32,7 +43,7 @@ public class NewBankClientHandler extends Thread{
 				}
 			}
 
-			// ask for password
+			// ask customer for password
 			out.println("Enter Password");
 			String password = "";
 			while(password.isEmpty()){
@@ -79,7 +90,7 @@ public class NewBankClientHandler extends Thread{
 						out.println("END - To exit NewBank.");
 						out.println();
 				}
-				// start accepting input by using while true{ blah blah
+				// start accepting input by using while true
 			}
 			//login has been unsuccessful
 			else {
@@ -93,6 +104,7 @@ public class NewBankClientHandler extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//to close input/output session
 		finally {
 			try {
 				in.close();
@@ -104,7 +116,7 @@ public class NewBankClientHandler extends Thread{
 		}
 	}
 
-		// asks user to confirm if the details they for either a MOVE or PAY command are correct before proceeding
+		// asks user to confirm if the details they entered for either a MOVE or PAY command are correct before proceeding
 		public static boolean confirmDetails(){
 			System.out.println("Please confirm the above details are correct (Y/N)");
 			try{
@@ -120,6 +132,7 @@ public class NewBankClientHandler extends Thread{
 					System.out.println("Wrong input, please enter 'Y' for yes or 'N' for no");
 					return false;
 				}
+			//informs of invaild input 
 			} catch(IOException e){
 					System.out.println("Wrong input argument, exception: " + e);
 				}

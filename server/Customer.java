@@ -7,17 +7,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//todo add method here to add password and to check password
+/*
+* This represent customer
+*
+* @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
+*/
 public class Customer {
-
+	// the logger for tracing app errors
 	private final static Logger LOGGER = Logger.getLogger(NewBank.class.getName());
+	// the accounts to hold account data
 	private ArrayList<Account> accounts;
+	// the transactions to hold transaction data
 	private ArrayList<Transaction> transactions;
+	// the loans to hold loan data
 	private ArrayList<Loan> loans = new ArrayList<Loan>();
+	// the password
 	private String password;
 	
+	/**
+	 * Instantiates new customer and a log file that helps developers to tace out errors
+	 */
 	public Customer() {
 		accounts = new ArrayList<>();
+		transactions = new ArrayList<>();
 
 		//all levels of message up to and including INFO will be written
 		try{
@@ -30,7 +42,7 @@ public class Customer {
 		}
 
 		LOGGER.setLevel(Level.INFO);
-		transactions = new ArrayList<>();
+		
 	}
 
 	/*
@@ -53,7 +65,8 @@ public class Customer {
 			return false;
 		}
 	}
-	
+
+	// @return accounts details in a string format
 	public String accountsToString() {
 		String s = "";
 		for(Account a : accounts) {
@@ -62,9 +75,7 @@ public class Customer {
 		return s;
 	}
 
-
-
-	/* Loans */
+	// converts loan objects to string for printing
 	public void printLoans(){
 
 		for (var loan : loans){
@@ -72,12 +83,10 @@ public class Customer {
 		}
 	}
 
-	/* Add Loans */
+	// Add Loans
 	public void addLoan(Loan loan){
 		loans.add(loan);
 	}
-
-
 
 	/*
 	* add new account for customer
@@ -175,13 +184,18 @@ public class Customer {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param account, adds new account
+	 */
 	public void addAccount(Account account) {
 		accounts.add(account);		
 	}
 
-
-
-	// method to get first account listed for the customer
+	/**
+	 * 
+	 * @return first account listed for the customer
+	 */
 	public Account getAccount(){
 		return accounts.get(0);
 	}
@@ -205,6 +219,4 @@ public class Customer {
 			System.out.println();
 		}
 	}
-
-
 }
