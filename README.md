@@ -110,7 +110,7 @@ manually navigate to the ``NewBank.java`` class and add the new user to the belo
 <br>
 
 
-##Commands
+#Commands
 
 ### Accounts
 
@@ -346,6 +346,6 @@ Then the username and password are requested again
 
 - response should be:
 
-```incorrect username inputted```
+```incorrect password input.```
 
 Then the username and password are requested again
