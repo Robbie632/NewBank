@@ -66,7 +66,6 @@ public class Customer {
 
 	/* Loans */
 	public void printLoans(){
-
 		for (var loan : loans){
 			System.out.println(loan.toString());
 		}

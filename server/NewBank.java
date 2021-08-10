@@ -37,7 +37,6 @@ public class NewBank {
 		bhagy.setPassword("1");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		bhagy.addAccount(new Account("Savings", 1000.0));
-		bhagy.addLoan(new Loan(100 , 25.5 , 24));
 		customers.put("b", bhagy);
 		
 		Customer christina = new Customer();
@@ -53,8 +52,13 @@ public class NewBank {
 		john.setPassword("3");
 		john.addAccount(new Account("Main", 250.0));
 		john.addAccount(new Account("Savings", 250.0));
-		john.addLoan(new Loan(150, 10 , 24));
+//		john.addLoan(new Loan(150, 10 , 24));
 		customers.put("j", john);
+
+// Create test loans
+
+		Loan.issueLoan(new LoanAgreement(100 , 25.5 , 24 , bhagy, christina));
+
 
 		/* Create  a new user here by uncommenting the below and setting values  */
 

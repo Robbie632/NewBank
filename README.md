@@ -212,10 +212,7 @@ Request from j
 Total borrowed : £ 150.0         rate: 10.0%
 ````
 
-Additional command will be supported such as
-- Adding loans
-- Making loans to other user
-- Paying off loans
+
 
 <br>
 
