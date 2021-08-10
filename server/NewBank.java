@@ -7,48 +7,67 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.ArrayList;
-
+/**
+ * This represent the logic of NewBank app
+ * 
+ * @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
+ */
 public class NewBank {
-
+	// the logger for tracing applications runtime errors
 	private final static Logger LOGGER = Logger.getLogger(NewBank.class.getName());
+	// the instance of the bank app
 	private static final NewBank bank = new NewBank();
+	// for storing and linking the customers details
 	private HashMap<String,Customer> customers;
 	
 	private NewBank() {
 		//all levels of message up to and including INFO will be written
 		try{
+			//creates a new log file for log records 
 			FileHandler fh = new FileHandler("MyLogFile.log");
+			//creates specific format for logging records
 			SimpleFormatter formatter = new SimpleFormatter();
+			//assignes format to the created log file
 			fh.setFormatter(formatter);
+			//register log file for logging messages
 			LOGGER.addHandler(fh);
 		} catch(IOException e) {
+			//inform user by printing onto console if there was a problem initialising log file
 			System.out.println("Error initialising logfile");
 		}
-
+		//setting confuguration for log level
 		LOGGER.setLevel(Level.INFO);
-
+		//creates empty hashmap
 		customers = new HashMap<>();
+		//initilizes method to test app and its features
 		addTestData();
 	}
-	
+	/**
+	 * The method has a hardcoded set of users that it checks when you log in. 
+	 * This is to test the app
+	 */
 	private void addTestData() {
+		//first customer
 		Customer bhagy = new Customer();
 		//set password
 		bhagy.setPassword("1");
+		//add money onto the main account
 		bhagy.addAccount(new Account("Main", 1000.0));
+		//add money to the Savings account
 		bhagy.addAccount(new Account("Savings", 1000.0));
+
 		customers.put("b", bhagy);
 		
+		//second customer
 		Customer christina = new Customer();
-		//set password
 		christina.setPassword("2");
 		christina.addAccount(new Account("Savings", 1500.0));
 		christina.addAccount(new Account("Main", 100.0));
 //		christina.addLoan(new Loan(75 , 25.5 , 24));
 		customers.put("c", christina);
 		
+		//third customer
 		Customer john = new Customer();
-		//set password
 		john.setPassword("3");
 		john.addAccount(new Account("Main", 250.0));
 		john.addAccount(new Account("Savings", 250.0));
@@ -67,7 +86,10 @@ public class NewBank {
 //		customers.put("New user", john);
 
 	}
-	
+	/**
+	 * 
+	 * @return bank, initialising the NewBank app
+	 */
 	public static NewBank getBank() {
 		return bank;
 	}
@@ -160,6 +182,7 @@ public class NewBank {
 	* commands from the NewBank customer are processed in this method
 	* @param customer, the id of the customer processing the request
 	* @param request, the input at the command line from the user
+	* @return object depending on the customer command choice
 	* */
 	public synchronized String processRequest(CustomerID customer, String request) {
 		boolean status=false;
@@ -190,7 +213,7 @@ public class NewBank {
 			break;
 
 
-			// Loans
+			//if user asks to see loans
 			case "SHOWMYLOANS" :
 				customers.get(customer.getKey()).printLoans();
 				status = true;
@@ -222,18 +245,19 @@ public class NewBank {
 				}
 			}
 				break;
-
+			//terminates bank application session
 			case "END" :
 				System.out.println("****  Thank you for using NewBank  ****");
 				System.exit(0);
 				break;
-
+			//the log file configuration messages
 			default :
 				LOGGER.warning("No valid operation input found");
 				return "FAIL";
 
 			}
 		}
+		//the log file configuration messages
 		if (status){
 			LOGGER.info("Command processed correctly");
 			return "SUCCESS";
@@ -243,6 +267,11 @@ public class NewBank {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param customer, creates 
+	 * @return prints out onto console the customer account details
+	 */
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
 	}

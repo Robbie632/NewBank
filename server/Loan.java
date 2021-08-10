@@ -1,5 +1,9 @@
 package server;
-
+/**
+ * This represents loans
+ * 
+ * @author UoB, MSc Computer Science, Cohort 6, Software Engineering 2 - Group 1
+ */
 public class Loan {
 
     private LoanAgreement agreement;
@@ -28,7 +32,11 @@ public class Loan {
 
     public void increaseBalance(double amount){
         balance = balance + amount;
-    }
+      
+    //@return prints on console the barrowed loan details
+    public String toString() {
+        return ("Total borrowed : £" + " " + amount + "\t" + " " + "rate: " + rate + "%" + "\n");
+
 
 
     public static void issueLoan(LoanAgreement agreement){
