@@ -55,9 +55,7 @@ public class NewBank {
 		bhagy.addAccount(new Account("Main", 1000.0));
 		//add money to the Savings account
 		bhagy.addAccount(new Account("Savings", 1000.0));
-		//add loan
-		bhagy.addLoan(new Loan(100 , 25.5 , 24));
-		//hashmap mapping for the username
+
 		customers.put("b", bhagy);
 		
 		//second customer
@@ -73,8 +71,13 @@ public class NewBank {
 		john.setPassword("3");
 		john.addAccount(new Account("Main", 250.0));
 		john.addAccount(new Account("Savings", 250.0));
-		john.addLoan(new Loan(150, 10 , 24));
+//		john.addLoan(new Loan(150, 10 , 24));
 		customers.put("j", john);
+
+// Create test loans
+
+		Loan.issueLoan(new LoanAgreement(100 , 25.5 , 24 , bhagy, christina));
+
 
 		/* Create  a new user here by uncommenting the below and setting values  */
 

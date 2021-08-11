@@ -77,7 +77,6 @@ public class Customer {
 
 	// converts loan objects to string for printing
 	public void printLoans(){
-
 		for (var loan : loans){
 			System.out.println(loan.toString());
 		}
